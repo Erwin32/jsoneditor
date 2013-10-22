@@ -3,6 +3,32 @@
 http://jsoneditoronline.org
 
 
+## 2013-10-17, version 2.3.3
+
+- Added support for search (Ctrl+F) in the code editor Ace.
+- Fixed a positioning issue of the action menu when in bootstrap modal.
+  (thanks tsash).
+
+
+## 2013-09-26, version 2.3.2
+
+- The web application is now available offline. Thanks ayanamist.
+
+
+## 2013-09-24, version 2.3.1
+
+- Fixed non-working action menu when in bootstrap modal (z-index issue).
+- Fixed missing main field in package.json.
+
+
+## 2013-09-13, version 2.3.0
+
+- Implemented an option `modes`, which creates a menu in the editor
+  where the user can switch between the selected editor modes.
+- Fixed wrong title on fields with value `null`.
+- Fixed buggy loading of files in the web application.
+
+
 ## 2013-08-01, version 2.2.2
 
 - Fixed non working option `indentation`.

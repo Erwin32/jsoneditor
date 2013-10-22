@@ -546,14 +546,9 @@ TreeEditor.prototype._createFrame = function () {
 
     // create undo/redo buttons
     if (this.history) {
-        // create separator
-        var separator = document.createElement('span');
-        separator.innerHTML = '&nbsp;';
-        this.menu.appendChild(separator);
-
         // create undo button
         var undo = document.createElement('button');
-        undo.className = 'undo';
+        undo.className = 'undo separator';
         undo.title = 'Undo last action (Ctrl+Z)';
         undo.onclick = function () {
             editor._onUndo();
@@ -577,6 +572,13 @@ TreeEditor.prototype._createFrame = function () {
             redo.disabled = !editor.history.canRedo();
         };
         this.history.onChange();
+    }
+
+    // create mode box
+    if (this.options && this.options.modes && this.options.modes.length) {
+        var modeBox = createModeBox(this, this.options.modes, this.options.mode);
+        this.menu.appendChild(modeBox);
+        this.dom.modeBox = modeBox;
     }
 
     // create search box
@@ -710,11 +712,11 @@ TreeEditor.prototype._createTable = function () {
     this.contentOuter = contentOuter;
 
     this.content = document.createElement('div');
-    this.content.className = 'content';
+    this.content.className = 'tree';
     contentOuter.appendChild(this.content);
 
     this.table = document.createElement('table');
-    this.table.className = 'content';
+    this.table.className = 'tree';
     this.content.appendChild(this.table);
 
     // IE8 does not handle overflow='auto' correctly.

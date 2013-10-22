@@ -62,6 +62,7 @@ TextEditor.prototype._create = function (container, options, json) {
 
     var me = this;
     this.container = container;
+    this.dom = {};
     this.editor = undefined;    // ace code editor
     this.textarea = undefined;  // plain text editor (fallback when Ace is not available)
 
@@ -82,10 +83,8 @@ TextEditor.prototype._create = function (container, options, json) {
 
     // create format button
     var buttonFormat = document.createElement('button');
-    //buttonFormat.innerHTML = 'Format';
     buttonFormat.className = 'format';
     buttonFormat.title = 'Format JSON data, with proper indentation and line feeds';
-    //buttonFormat.className = 'jsoneditor-button';
     this.menu.appendChild(buttonFormat);
     buttonFormat.onclick = function () {
         try {
@@ -98,10 +97,8 @@ TextEditor.prototype._create = function (container, options, json) {
 
     // create compact button
     var buttonCompact = document.createElement('button');
-    //buttonCompact.innerHTML = 'Compact';
     buttonCompact.className = 'compact';
     buttonCompact.title = 'Compact JSON data, remove all whitespaces';
-    //buttonCompact.className = 'jsoneditor-button';
     this.menu.appendChild(buttonCompact);
     buttonCompact.onclick = function () {
         try {
@@ -111,6 +108,13 @@ TextEditor.prototype._create = function (container, options, json) {
             me._onError(err);
         }
     };
+
+    // create mode box
+    if (this.options && this.options.modes && this.options.modes.length) {
+        var modeBox = createModeBox(this, this.options.modes, this.options.mode);
+        this.menu.appendChild(modeBox);
+        this.dom.modeBox = modeBox;
+    }
 
     this.content = document.createElement('div');
     this.content.className = 'outer';
@@ -156,7 +160,7 @@ TextEditor.prototype._create = function (container, options, json) {
     else {
         // load a plain text textarea
         var textarea = document.createElement('textarea');
-        textarea.className = 'content';
+        textarea.className = 'text';
         textarea.spellcheck = false;
         this.content.appendChild(textarea);
         this.textarea = textarea;
