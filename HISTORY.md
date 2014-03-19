@@ -3,6 +3,24 @@
 http://jsoneditoronline.org
 
 
+## 2014-01-03, version 2.3.6
+
+- Fixed positioning issue of the action menu.
+
+
+## 2013-12-09, version 2.3.5
+
+- Fixed a positioning issue of the action menu again.
+- Fixed an issue with non-breaking space characters.
+
+
+## 2013-11-19, version 2.3.4
+
+- Dropped support for IE8, cleaned up legacy code for old browsers.
+- Disabled saving files using HTML5 on Firefox to prevent a Firefox bug
+  blocking cut/paste functionality in editable divs after using a.download.
+
+
 ## 2013-10-17, version 2.3.3
 
 - Added support for search (Ctrl+F) in the code editor Ace.
